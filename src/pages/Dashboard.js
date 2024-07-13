@@ -50,21 +50,23 @@ export default function Home() {
             position: "relative"
           }}
         >
-                    <Button
-            sx={{
-              position: "absolute",
-              left: "2rem",
-              backgroundColor: "#fff",
-              color: "#1976d2",
-              '&:hover': {
-                backgroundColor: "#1976d2",
-                color: "#fff",
-              }
-            }}
-            variant="contained"
-          >
-            <Link to="/" style={{ color: "inherit", textDecoration: 'none' }}>Home</Link>
-          </Button>
+                     <Button
+      sx={{
+        position: "absolute",
+        left: "2rem",
+        backgroundColor: "#fff",
+        color: "#1976d2",
+        '&:hover': {
+          backgroundColor: "#1976d2",
+          color: "#fff",
+        }
+      }}
+      variant="contained"
+    >
+      <Link to="/" style={{ color: "inherit", textDecoration: 'none' }}>
+        Home
+      </Link>
+    </Button>
           <Typography variant='h3' align='center' sx={{ flexGrow: 1 }}>
             EMPLOYER DASHBOARD
           </Typography>
