@@ -34,9 +34,29 @@ console.log(post);
   return (
     <Grid container spacing={2} sx={{ margin: "2%" }}>
       <Grid item xs={12} sx={12} md={12} lg={12}>
-      <Button sx={{ margin: "1% 2%" }} variant="outlined">
-            <Link to="/">Home</Link>
-          </Button>
+      <Button
+      sx={{
+        margin: "1% 2%",
+        borderColor: "#1976d2",
+        color: "#1976d2",
+        '&:hover': {
+          borderColor: "#1976d2",
+          backgroundColor: "#1976d2",
+          color: "#fff",
+        },
+        '& a': {
+          color: "inherit",
+          textDecoration: "none",
+          display: "inline-block",
+          width: "100%",
+          height: "100%",
+          lineHeight: "2.5rem",
+        }
+      }}
+      variant="outlined"
+    >
+      <Link to="/">Home</Link>
+    </Button>
         <Box>
           <TextField
             InputProps={{
