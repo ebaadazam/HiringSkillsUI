@@ -5,50 +5,83 @@ import {
   Button,
   Paper,
   Box,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-const initial = { profile: "", exp: 0, techs: [], desc:"" };
+
+const initial = { profile: "", exp: "", techs: [], desc: "" };
 
 const Create = () => {
-    const skillSet = [
-      { name: "Javascript" },
-      { name: "Java" },
-      { name: "Python" },
-      { name: "C++" },
-      { name: "Rust" },
-      { name: "Django" },
-      { name: "NodeJS" }
-      ];
+  const skillSet = [
+  { name: "Angular" },
+  { name: "AWS" },
+  { name: "Blockchain" },
+  { name: "C#" },
+  { name: "Dot Net" },
+  { name: "C++" },
+  { name: "CSS" },
+  { name: "Data Science" },
+  { name: "Django" },
+  { name: "Docker" },
+  { name: "Git" },
+  { name: "HTML" },
+  { name: "Java" },
+  { name: "JavaScript" },
+  { name: "Kotlin" },
+  { name: "Machine Learning" },
+  { name: "MongoDB" },
+  { name: "MicroServices" },
+  { name: "Node.js" },
+  { name: "PHP" },
+  { name: "Python" },
+  { name: "React.js" },
+  { name: "RESTful API" },
+  { name: "Ruby" },
+  { name: "Rust" },
+  { name: "SQL" },
+  { name: "Spring Boot" },
+  { name: "Swift" },
+  { name: "UI/UX Design" },
+  ];
   const navigate = useNavigate();
   const [form, setForm] = useState(initial);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/post", {
-      method: "POST", // or 'PUT'
+    const parsedForm = { ...form, exp: form.exp }; // Keep exp as a string
+    fetch("http://localhost:8080/addpost", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form),
+      body: JSON.stringify(parsedForm),
     })
-      .then((response) => console.log(response))
+      .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-      navigate('/employee/feed');
+    navigate("/employee/feed");
   };
 
-  const { profile, exp, desc } = form;
+  const { profile, exp, desc, techs } = form;
 
   const handleChange = (e) => {
-    setForm({...form , tech : [...form.tech, e.target.value]});
-  }
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleTechsChange = (e) => {
+    const { value } = e.target;
+    setForm({ ...form, techs: value });
+  };
 
   return (
-    <Paper sx={{ padding:"2%"}} elevation={3}>
+    <Paper sx={{ padding: "2%" }} elevation={3}>
       <Typography sx={{ margin: "3% auto" }} align="center" variant="h5">
         Create New Post
       </Typography>
@@ -64,55 +97,52 @@ const Create = () => {
             type="string"
             sx={{ width: "50%", margin: "2% auto" }}
             required
-            onChange={(e) => setForm({ ...form, profile: e.target.value })}
+            onChange={handleChange}
             label="Job-profile"
+            name="profile"
             variant="outlined"
             value={profile}
           />
           <TextField
-            min="0"
             type="string"
             sx={{ width: "50%", margin: "2% auto" }}
             required
-            onChange={(e) => setForm({ ...form, exp: e.target.value })}
+            onChange={handleChange}
             label="Years of Experience"
+            name="exp"
             variant="outlined"
             value={exp}
           />
-           <TextField
+          <TextField
             type="string"
             sx={{ width: "50%", margin: "2% auto" }}
             required
             multiline
             rows={4}
-            onChange={(e) => setForm({ ...form, desc: e.target.value })}
+            onChange={handleChange}
             label="Job-desc"
+            name="desc"
             variant="outlined"
             value={desc}
           />
-          <Box sx={{ margin:"1% auto"}}>
-          <h3>Please mention required skills</h3>
-         <ul>
-        {skillSet.map(({ name }, index) => {
-          return (
-            <li key={index}>
-              <div >
-                <div>
-                  <input
-                    type="checkbox"
-                    id={`custom-checkbox-${index}`}
-                    name={name}
-                    value={name}
-                    onChange={handleChange}  
-                  />
-                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-       
-      </ul>
+          <Box sx={{ margin: "1% auto", width: "50%" }}>
+            <InputLabel id="techs-label">Required Skills</InputLabel>
+            <Select
+              labelId="techs-label"
+              id="techs"
+              multiple
+              value={techs}
+              onChange={handleTechsChange}
+              renderValue={(selected) => selected.join(", ")}
+              variant="outlined"
+              fullWidth
+            >
+              {skillSet.map(({ name }, index) => (
+                <MenuItem key={index} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
           </Box>
           <Button
             sx={{ width: "50%", margin: "2% auto" }}
