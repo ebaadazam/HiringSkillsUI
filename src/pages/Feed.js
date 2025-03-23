@@ -80,12 +80,12 @@ const Feed = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
           <Button
-  variant="contained"
-  onClick={handleSearch}
-  sx={{ height: '3rem', padding: '0 1.5rem' }}
->
-  Search
-</Button>
+            variant="contained"
+            onClick={handleSearch}
+            sx={{ height: '3rem', padding: '0 1.5rem' }}
+          >
+            Search
+          </Button>
 
         </Box>
       </Grid>
