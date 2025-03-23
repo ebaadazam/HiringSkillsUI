@@ -19,7 +19,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchInitialPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/allPosts`);
+        const response = await axios.get(`http://localhost:8081/allPosts`);
         setPost(response.data);
       } catch (error) {
         console.error("Error fetching initial posts:", error);
@@ -31,7 +31,7 @@ const Feed = () => {
   const handleSearch = async () => {
     if (query.length > 2) {
       try {
-        const response = await axios.get(`http://localhost:8080/poststext/${query}`);
+        const response = await axios.get(`http://localhost:8081/poststext/${query}`);
         setPost(response.data);
       } catch (error) {
         console.error("Error fetching posts:", error);

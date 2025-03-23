@@ -19,7 +19,7 @@ const Home = () => {
           <Button
             startIcon={<WorkIcon />}
             sx={{ margin: "2% 3%", backgroundColor: '#4caf50', color: 'white', '&:hover': { backgroundColor: '#388e3c' } }}
-            variant="contained" // Changed to contained for a more pronounced look
+            variant="contained"
             className="home-button"
           >
             <Link to="/employer/dashboard" className="link">
@@ -31,7 +31,7 @@ const Home = () => {
           <Button
             startIcon={<SearchIcon />}
             sx={{ margin: "2% 3%", backgroundColor: '#2196f3', color: 'white', '&:hover': { backgroundColor: '#1976d2' } }}
-            variant="contained" // Changed to contained for a more pronounced look
+            variant="contained"
             className="home-button"
           >
             <Link to="/employee/feed" className="link">

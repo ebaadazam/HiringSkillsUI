@@ -55,7 +55,7 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const parsedForm = { ...form, exp: form.exp }; // Keep exp as a string
-    fetch("http://localhost:8080/addpost", {
+    fetch("http://localhost:8081/addpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
